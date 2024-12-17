@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slick-slide {
+  margin: 0 8px; /* Adjust gap between slides */
+}
+
+.slick-list {
+  margin: 0 -8px;
+  height: 250px; /* To compensate for the added margins */
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+
