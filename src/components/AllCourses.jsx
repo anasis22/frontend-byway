@@ -5,7 +5,7 @@ import HomeNavbar from "./HomeNavbar";
 import MenuSection from "./MenuSection";
 
 const AllCourses = () => {
-  const { courses, navigate , handleCourseClick} = useData();
+  const { courses, navigate , handleCourseClick, BACKEND_URL} = useData();
 
   const back = () => {
     navigate("/")
@@ -58,7 +58,7 @@ const AllCourses = () => {
                 "
             >
               <img
-                src={`http://127.0.0.1:8000/${el.thumbnail}`}
+                src={`${BACKEND_URL}/${el.thumbnail}`}
                 alt="course_thumbnail"
               />
               <div className="
@@ -85,7 +85,7 @@ const AllCourses = () => {
                 >
                   <img
                     className="w-14"
-                    src={`http://127.0.0.1:8000/${el.rating_star}`}
+                    src={`${BACKEND_URL}/${el.rating_star}`}
                     alt="star"
                   />
                   <p

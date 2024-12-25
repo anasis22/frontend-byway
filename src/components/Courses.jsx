@@ -3,7 +3,7 @@ import { useData } from "../contexts/DataContexts";
 import { useNavigate } from "react-router-dom";
 
 const Courses = () => {
-  const { courses, handleCourseClick } = useData();
+  const { courses, handleCourseClick, BACKEND_URL } = useData();
   const displayedCourses = courses.slice(0,4)
   const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ const Courses = () => {
                 "
             >
               <img
-                src={`http://127.0.0.1:8000/${el.thumbnail}`}
+                src={`${BACKEND_URL}/${el.thumbnail}`}
                 alt="course_thumbnail"
               />
               <div className="
@@ -86,7 +86,7 @@ const Courses = () => {
                 >
                   <img
                     className="w-14"
-                    src={`http://127.0.0.1:8000/${el.rating_star}`}
+                    src={`${BACKEND_URL}/${el.rating_star}`}
                     alt="star"
                   />
                   <p

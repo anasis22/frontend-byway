@@ -2,7 +2,7 @@ import React from "react";
 import { useData } from "../contexts/DataContexts";
 
 const OtherDetailsOfCourse = () => {
-  const { selectedCourse } = useData();
+  const { selectedCourse, BACKEND_URL } = useData();
 
   return (
     <div
@@ -92,7 +92,7 @@ const OtherDetailsOfCourse = () => {
         <div className="flex gap-6 items-center">
           <img
             className="w-24"
-            src={`http://127.0.0.1:8000/${selectedCourse.author_icon}`}
+            src={`${BACKEND_URL}/${selectedCourse.author_icon}`}
             alt="author"
           />
           <div className="flex flex-col gap-2">

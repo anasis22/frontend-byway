@@ -5,7 +5,7 @@ import HomeNavbar from "./HomeNavbar";
 import MenuSection from "./MenuSection";
 
 const AllInstructors = () => {
-  const { instructors, navigateToBack } = useData();
+  const { instructors, navigateToBack, BACKEND_URL } = useData();
 
   return (
     <div
@@ -60,7 +60,7 @@ const AllInstructors = () => {
                 "
             >
               <img
-                src={`http://127.0.0.1:8000/${el.instructor_image}`}
+                src={`${BACKEND_URL}/${el.instructor_image}`}
                 alt="img"
               />
 
@@ -79,7 +79,7 @@ const AllInstructors = () => {
                 <section className="flex items-center gap-2">
                   <img
                     className="w-5"
-                    src={`http://127.0.0.1:8000/${el.rating_star}`}
+                    src={`${BACKEND_URL}/${el.rating_star}`}
                     alt="star"
                   />
                   <p className="text-xs font-medium">{el.rating_text}</p>

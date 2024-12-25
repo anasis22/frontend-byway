@@ -2,7 +2,7 @@ import React from "react";
 import { useData } from "../contexts/DataContexts";
 
 const Instructors = () => {
-  const { instructors, showAllInstructors, navigate } = useData();
+  const { instructors, showAllInstructors, navigate, BACKEND_URL } = useData();
 
   const displayedInstructors = instructors.slice(0,4)
 
@@ -60,7 +60,7 @@ const Instructors = () => {
                 "
             >
               <img
-                src={`http://127.0.0.1:8000/${el.instructor_image}`}
+                src={`${BACKEND_URL}/${el.instructor_image}`}
                 alt="img"
               />
 
@@ -77,7 +77,7 @@ const Instructors = () => {
                 <section className="flex items-center gap-2">
                   <img
                   className="w-5"
-                    src={`http://127.0.0.1:8000/${el.rating_star}`}
+                    src={`${BACKEND_URL}/${el.rating_star}`}
                     alt="star"
                   />
                   <p className="text-xs font-medium">{el.rating_text}</p>

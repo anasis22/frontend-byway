@@ -68,7 +68,7 @@ const Feedbacks = () => {
               <div className="flex items-center gap-4 mt-6">
                 <img
                   className="w-12 h-12 rounded-full object-cover" 
-                  src={`http://127.0.0.1:8000/${el.image}`}
+                  src={`${BACKEND_URL}/${el.image}`}
                   alt="img"
                 />
                 <div>

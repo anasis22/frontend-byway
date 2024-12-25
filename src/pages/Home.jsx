@@ -9,7 +9,7 @@ import Instructors from '../components/Instructors'
 import Feedbacks from '../components/Feedbacks'
 import ShapeTheFuture from '../components/ShapeTheFuture'
 import Footer from '../components/Footer'
-import { useData } from '../contexts/DataContexts'
+
 
 const Home = () => {
   return (

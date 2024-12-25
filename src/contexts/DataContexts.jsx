@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+
 const DataContext = React.createContext();
 
 export const useData = () => {
@@ -44,7 +46,7 @@ export const DataProvider = ({ children }) => {
   // // get the categories from the backend
   const getCategories = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/top-categories/");
+      const res = await axios.get(`${BACKEND_URL}/api/top-categories/`);
       setCategories(res.data);
       // console.log(res.data);
     } catch (err) {
@@ -55,7 +57,7 @@ export const DataProvider = ({ children }) => {
   // // get the course details from the backend
   const getCourses = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/top-courses/");
+      const res = await axios.get(`${BACKEND_URL}/api/top-courses/`);
       setCourses(res.data);
       // console.log(res.data);
     } catch (err) {
@@ -66,7 +68,7 @@ export const DataProvider = ({ children }) => {
   // get the intstructors details from the backend
   const getInstructors = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/top-instructors/");
+      const res = await axios.get(`${BACKEND_URL}/api/top-instructors/`);
       setInstructors(res.data);
       // console.log(res.data);
     } catch (err) {
@@ -78,7 +80,7 @@ export const DataProvider = ({ children }) => {
   const getCustomerFeedbacks = async () => {
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/customer-feedbacks/"
+        `${BACKEND_URL}/api/customer-feedbacks/`
       );
       setCustomerFeedbacks(res.data);
       // console.log(res.data);
@@ -136,7 +138,7 @@ export const DataProvider = ({ children }) => {
   // Fetch the Purchased Courses
   const getPurchasedCourses = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/purchased-courses/", {
+      const response = await axios.get(`${BACKEND_URL}/api/purchased-courses/`, {
         withCredentials: true,
       });
       // console.log(response.data.purchased_courses);
@@ -174,6 +176,7 @@ export const DataProvider = ({ children }) => {
     buyedCourses,
     setBuyedCourses,
     buyedCoursesCount,
+    BACKEND_URL
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

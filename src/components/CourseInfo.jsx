@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContexts";
 import axios from "axios";
 
 const CourseInfo = () => {
-  const { selectedCourse , navigate , isGet , setIsGet ,getPurchasedCourses} = useData();
+  const { selectedCourse , navigate ,getPurchasedCourses, BACKEND_URL} = useData();
   const { user } = useAuth();
   const links = [
     { path: "/", label: "Home" },
@@ -30,7 +30,7 @@ const CourseInfo = () => {
     
       try {
         const response = await axios.post(
-          `http://localhost:8000/api/buy-course/${courseId}/`,
+          `${BACKEND_URL}/api/buy-course/${courseId}/`,
           {},
           { withCredentials: true ,
             headers: {
@@ -144,7 +144,7 @@ const CourseInfo = () => {
           "
           >
             <img
-              src={`http://127.0.0.1:8000/${selectedCourse.author_icon}`}
+              src={`${BACKEND_URL}/${selectedCourse.author_icon}`}
               alt="author_icon"
             />
             <p
@@ -181,7 +181,7 @@ const CourseInfo = () => {
           flex flex-col p-3"
           >
             <img
-              src={`http://127.0.0.1:8000/${selectedCourse.course_detail_thumbnail}`}
+              src={`${BACKEND_URL}/${selectedCourse.course_detail_thumbnail}`}
               alt="thumbnail"
             />
             <div className="flex items-center gap-3 mt-4">

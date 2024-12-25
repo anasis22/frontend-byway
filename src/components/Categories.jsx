@@ -2,7 +2,7 @@ import React from "react";
 import { useData } from "../contexts/DataContexts";
 
 const Categories = () => {
-  const { categories , navigate} = useData();
+  const { categories , navigate, BACKEND_URL} = useData();
   
   const displayedCategories = categories.slice(0,4)
 
@@ -52,7 +52,7 @@ const Categories = () => {
             sm:w-[30%]
             md:w-[20%]
             ">
-              <img className="w-16" src={`http://127.0.0.1:8000/${el.icon}`} alt="categ_icon" />
+              <img className="w-16" src={`${BACKEND_URL}/${el.icon}`} alt="categ_icon" />
               <h5 className="text-lg font-semibold">{el.name}</h5>
               <p className="text-sm font-light">{el.course_counts}</p>
             </div>

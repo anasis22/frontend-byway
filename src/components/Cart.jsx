@@ -4,7 +4,7 @@ import { IoMdArrowBack } from "react-icons/io";
 import { useAuth } from "../contexts/AuthContexts";
 
 const Cart = () => {
-  const { buyedCourses , navigateToBack} = useData();
+  const { buyedCourses , navigateToBack, BACKEND_URL} = useData();
   const {user} = useAuth()
 
   return (
@@ -31,7 +31,7 @@ const Cart = () => {
                 ">
                   <img
                     className=""
-                    src={`http://localhost:8000/${el.course_detail_thumbnail}`}
+                    src={`${BACKEND_URL}/${el.course_detail_thumbnail}`}
                     alt=""
                   />
                   <div className="flex flex-col

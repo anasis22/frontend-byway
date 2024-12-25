@@ -7,7 +7,7 @@ import { useData } from "../contexts/DataContexts";
 
 const Login = () => {
   const { login } = useAuth();
-  const { navigateHomePage, navigateSignupPage } = useData();
+  const { navigateHomePage, navigateSignupPage, BACKEND_URL } = useData();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState()
@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/login/",
+        `${BACKEND_URL}/api/login/`,
         {
           username,
           password,
