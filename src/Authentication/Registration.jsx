@@ -7,7 +7,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 
 const Registration = () => {
   const { login } = useAuth();
-  const { navigateLoginPage, navigateHomePage } = useData();
+  const { navigateLoginPage, navigateHomePage , BACKEND_URL} = useData();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
