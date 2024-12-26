@@ -19,16 +19,10 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
 
-  // Login function
-  const login = async (userData) => {
-    try {
-      setUser(userData);
-      localStorage.setItem("user", JSON.stringify(userData));
-  
-      // Ensure purchased courses are fetched after login
-    } catch (error) {
-      console.error("Error during login or fetching courses:", error);
-    }
+   // Login function
+   const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData)); 
   };
 
 
