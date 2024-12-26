@@ -59,7 +59,7 @@ const Courses = () => {
                 "
             >
               <img
-                src={`${BACKEND_URL}/${el.thumbnail}`}
+                src={`${BACKEND_URL}${el.thumbnail}`}
                 alt="course_thumbnail"
               />
               <div className="
@@ -86,7 +86,7 @@ const Courses = () => {
                 >
                   <img
                     className="w-14"
-                    src={`${BACKEND_URL}/${el.rating_star}`}
+                    src={`${BACKEND_URL}${el.rating_star}`}
                     alt="star"
                   />
                   <p

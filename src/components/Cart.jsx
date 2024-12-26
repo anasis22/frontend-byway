@@ -31,7 +31,7 @@ const Cart = () => {
                 ">
                   <img
                     className=""
-                    src={`${BACKEND_URL}/${el.course_detail_thumbnail}`}
+                    src={`${BACKEND_URL}${el.course_detail_thumbnail}`}
                     alt=""
                   />
                   <div className="flex flex-col

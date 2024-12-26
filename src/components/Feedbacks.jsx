@@ -4,7 +4,7 @@ import { useData } from "../contexts/DataContexts";
 
 
 const Feedbacks = () => {
-  const { customerFeedbacks } = useData();
+  const { customerFeedbacks, BACKEND_URL } = useData();
   const settings = {
     dots: false, 
     arrows: true, 
@@ -68,7 +68,7 @@ const Feedbacks = () => {
               <div className="flex items-center gap-4 mt-6">
                 <img
                   className="w-12 h-12 rounded-full object-cover" 
-                  src={`${BACKEND_URL}/${el.image}`}
+                  src={`${BACKEND_URL}${el.image}`}
                   alt="img"
                 />
                 <div>

@@ -6,9 +6,6 @@ import { useAuth } from "../contexts/AuthContexts";
 const HomeNavbar = () => {
   const { setMenuSection , navigateLoginPage, navigateSignupPage , navigateCart , buyedCoursesCount} = useData();
   const { user , logout } = useAuth();
-
-  console.log(buyedCoursesCount)
-
   return (
     <div className="w-[90%] flex items-center justify-between pt-4 text-txtColor">
       <section className="flex items-center justify-center gap-2">

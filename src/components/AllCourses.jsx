@@ -6,7 +6,7 @@ import MenuSection from "./MenuSection";
 
 const AllCourses = () => {
   const { courses, navigate , handleCourseClick, BACKEND_URL} = useData();
-
+  console.log('Hello')
   const back = () => {
     navigate("/")
   }
@@ -58,7 +58,7 @@ const AllCourses = () => {
                 "
             >
               <img
-                src={`${BACKEND_URL}/${el.thumbnail}`}
+                src={`${BACKEND_URL}${el.thumbnail}`}
                 alt="course_thumbnail"
               />
               <div className="
@@ -66,7 +66,7 @@ const AllCourses = () => {
               ">
                 <h4
                   className="
-                    text-sm font-medium text-txtBcolor
+                    text-sm font-medium text-green-600
                     "
                 >
                   {el.title}
@@ -85,7 +85,7 @@ const AllCourses = () => {
                 >
                   <img
                     className="w-14"
-                    src={`${BACKEND_URL}/${el.rating_star}`}
+                    src={`${BACKEND_URL}${el.rating_star}`}
                     alt="star"
                   />
                   <p

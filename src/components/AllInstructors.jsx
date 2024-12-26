@@ -60,7 +60,7 @@ const AllInstructors = () => {
                 "
             >
               <img
-                src={`${BACKEND_URL}/${el.instructor_image}`}
+                src={`${BACKEND_URL}${el.instructor_image}`}
                 alt="img"
               />
 
@@ -79,7 +79,7 @@ const AllInstructors = () => {
                 <section className="flex items-center gap-2">
                   <img
                     className="w-5"
-                    src={`${BACKEND_URL}/${el.rating_star}`}
+                    src={`${BACKEND_URL}${el.rating_star}`}
                     alt="star"
                   />
                   <p className="text-xs font-medium">{el.rating_text}</p>

@@ -115,7 +115,7 @@ export const DataProvider = ({ children }) => {
   };
 
   // Handle the Course Click
-  const handleCourseClick = (course) => {
+  const handleCourseClick = async (course) => {
     setSelectedCourse(course);
     navigate("/all-courses/course-details");
     window.scrollTo({

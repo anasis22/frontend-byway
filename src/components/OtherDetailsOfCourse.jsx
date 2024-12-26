@@ -3,7 +3,6 @@ import { useData } from "../contexts/DataContexts";
 
 const OtherDetailsOfCourse = () => {
   const { selectedCourse, BACKEND_URL } = useData();
-
   return (
     <div
       className=" w-[90%]
@@ -92,7 +91,7 @@ const OtherDetailsOfCourse = () => {
         <div className="flex gap-6 items-center">
           <img
             className="w-24"
-            src={`${BACKEND_URL}/${selectedCourse.author_icon}`}
+            src={`${BACKEND_URL}${selectedCourse.author_icon}`}
             alt="author"
           />
           <div className="flex flex-col gap-2">

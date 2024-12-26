@@ -45,8 +45,12 @@ const CourseInfo = () => {
         }
         
       } catch (error) {
-        // console.error("Error purchasing course:", error);
-        alert("You already own this course")
+        if (error.response && error.response.status === 400) {
+          alert("You already own this course");
+        } else {
+          console.error("Error purchasing course:", error);
+          alert("An unexpected error occurred. Please try again later.");
+        }
       }
     };
 
@@ -144,7 +148,7 @@ const CourseInfo = () => {
           "
           >
             <img
-              src={`${BACKEND_URL}/${selectedCourse.author_icon}`}
+              src={`${BACKEND_URL}${selectedCourse.author_icon}`}
               alt="author_icon"
             />
             <p
@@ -181,7 +185,7 @@ const CourseInfo = () => {
           flex flex-col p-3"
           >
             <img
-              src={`${BACKEND_URL}/${selectedCourse.course_detail_thumbnail}`}
+              src={`${BACKEND_URL}${selectedCourse.course_detail_thumbnail}`}
               alt="thumbnail"
             />
             <div className="flex items-center gap-3 mt-4">
