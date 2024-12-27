@@ -61,10 +61,7 @@ const CourseInfo = () => {
       const response = await axios.get(`${BACKEND_URL}/api/get-csrf-token/`, {
         withCredentials: true, // Ensures cookies are sent and received
       });
-      const csrfToken = response.headers["set-cookie"]
-        ?.find((cookie) => cookie.startsWith("csrftoken="))
-        ?.split("=")[1]
-        ?.split(";")[0];
+      const csrfToken = response.data.csrfToken;
 
       console.log("CSRF Token:", csrfToken);
       return csrfToken;
