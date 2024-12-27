@@ -11,11 +11,12 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error,setError] = useState()
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(
         `${BACKEND_URL}/api/login/`,
@@ -36,6 +37,8 @@ const Login = () => {
       }
     } catch (error) {
       setError("Invalid credentials");
+    }finally {
+      setLoading(false); 
     }
   };
 
@@ -92,8 +95,9 @@ const Login = () => {
           <button
             className="bg-blue-400 text-sm font-light p-2 rounded-md mt-10 text-white"
             type="submit"
+            disabled={loading} 
           >
-            Login
+            {loading ? "Logging in..." : "Login"} 
           </button>
         </form>
         {/* if user dont have an account */}
