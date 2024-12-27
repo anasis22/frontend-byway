@@ -15,51 +15,11 @@ const CourseInfo = () => {
   ];
 
   // Course Buy
-  // const handleBuyNow = async (courseId) => {
-
-  //   const getCSRFToken = () => {
-  //     const cookies = document.cookie.split("; ");
-  //     const csrfCookie = cookies.find(cookie => cookie.startsWith("csrftoken="));
-  //     console.log(csrfCookie)
-  //     return csrfCookie ? csrfCookie.split("=")[1] : null;
-  //   };
-
-  //   if (!user) {
-  //     alert("You must log in to purchase a course!");
-  //     navigate("/login");
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.post(
-  //       `${BACKEND_URL}/api/buy-course/${courseId}/`,
-  //       {},
-  //       { withCredentials: true ,
-  //         headers: {
-  //           "X-CSRFToken": getCSRFToken(),
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       alert("Course purchased successfully!");
-  //       getPurchasedCourses()
-  //     }
-
-  //   } catch (error) {
-  //     if (error.response && error.response.status === 400) {
-  //       alert("You already own this course");
-  //     } else {
-  //       console.error("Error purchasing course:", error);
-  //       alert("An unexpected error occurred. Please try again later.");
-  //     }
-  //   }
-  // };
 
   const fetchCSRFToken = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/api/get-csrf-token/`, {
-        withCredentials: true, // Ensures cookies are sent and received
+        withCredentials: true, 
       });
       const csrfToken = response.data.csrfToken;
 
@@ -67,7 +27,7 @@ const CourseInfo = () => {
       return csrfToken;
     } catch (error) {
       console.error("Error fetching CSRF token:", error);
-      return null; // Return null if fetching the CSRF token fails
+      return null; 
     }
   };
 
@@ -79,7 +39,6 @@ const CourseInfo = () => {
     }
 
     try {
-      // Fetch the CSRF token
       const csrfToken = await fetchCSRFToken();
       if (!csrfToken) {
         alert("Unable to fetch CSRF token. Please try again later.");
