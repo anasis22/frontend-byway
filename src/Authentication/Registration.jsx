@@ -13,11 +13,12 @@ const Registration = () => {
   const [password, setPassword] = useState("");
   const [error,setError] = useState()
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (password !== passwordConfirm) {
       setError("Passwords do not match.");
       return;
@@ -43,6 +44,8 @@ const Registration = () => {
         "Registration failed: " +
           (error.response?.data?.error || "Unknown error")
       );
+    }finally {
+      setLoading(false); 
     }
   };
 
@@ -123,8 +126,9 @@ const Registration = () => {
           <button
             className="bg-blue-400 text-sm font-light p-2 rounded-md mt-10 text-white"
             type="submit"
+            disabled={loading}
           >
-            Register
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
         {/* if user dont have an account */}

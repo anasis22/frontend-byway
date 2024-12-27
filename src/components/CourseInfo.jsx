@@ -23,7 +23,7 @@ const CourseInfo = () => {
       });
       const csrfToken = response.data.csrfToken;
 
-      console.log("CSRF Token:", csrfToken);
+      // console.log("CSRF Token:", csrfToken);
       return csrfToken;
     } catch (error) {
       console.error("Error fetching CSRF token:", error);
@@ -72,7 +72,7 @@ const CourseInfo = () => {
 
   useEffect(() => {
     if (user) {
-      console.log(user.username);
+      // console.log(user.username);
       getPurchasedCourses();
     }
   }, [user]);
