@@ -56,6 +56,7 @@ const CourseInfo = () => {
 
     useEffect(() => {
       if(user){
+        console.log(user.username)
         getPurchasedCourses()
       }
     },[user])
