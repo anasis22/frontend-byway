@@ -4,8 +4,9 @@ import { useData } from "../contexts/DataContexts";
 import { useAuth } from "../contexts/AuthContexts";
 
 const CourseMenuSection = () => {
-  const { menuSection, setMenuSection , navigateLoginPage , navigateCart} = useData();
-  const {user} = useAuth()
+  const { menuSection, setMenuSection, navigateLoginPage, navigateCart } =
+    useData();
+  const { user } = useAuth();
   return (
     <div
       className={`bg-slate-200 w-64 h-screen absolute top-0 right-0
@@ -17,16 +18,14 @@ const CourseMenuSection = () => {
       <section className="flex flex-col items-center justify-center mt-20">
         {/* wishlist */}
         <div className="w-full cursor-pointer flex items-center justify-center border-t border-slate-400 border-b py-3 gap-6">
-          <img
-            className="w-5"
-            src="/icons/heart-icon.png"
-            alt="cart"
-          />
+          <img className="w-5" src="/icons/heart-icon.png" alt="cart" />
           <p>Wishlist</p>
         </div>
         {/* cart */}
-        <div onClick={navigateCart} className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6">
-          <div className="relative">
+        <div
+          onClick={navigateCart}
+          className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6"
+        >
           <img
             className="w-5 cursor-pointer"
             src="/icons/cart.png"
@@ -34,7 +33,6 @@ const CourseMenuSection = () => {
           />
           <p>Cart</p>
           {user && <CartCount />}
-          </div>
         </div>
         {/* notification */}
         <div className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6">
@@ -46,7 +44,10 @@ const CourseMenuSection = () => {
           <p>Notifications</p>
         </div>
         {/* account */}
-        <div onClick={navigateLoginPage} className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6">
+        <div
+          onClick={navigateLoginPage}
+          className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6"
+        >
           <img
             className="w-5 cursor-pointer"
             src="/icons/account.png"
