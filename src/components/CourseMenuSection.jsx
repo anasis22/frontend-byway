@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContexts";
 import CartCount from "./CartCount";
 
 const CourseMenuSection = () => {
-  const { menuSection, setMenuSection, navigateLoginPage, navigateCart } =
+  const { menuSection, setMenuSection, navigateLoginPage, navigateCart , buyedCoursesCount } =
     useData();
   const { user } = useAuth();
   return (
@@ -33,7 +33,7 @@ const CourseMenuSection = () => {
             alt="cart"
           />
           <p>Cart</p>
-          {user && <CartCount />}
+          {user && <span className="text-xs font-light bg-red-500 text-white px-1 py-0.5 rounded-md">{buyedCoursesCount}</span>}
         </div>
         {/* notification */}
         <div className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6">
