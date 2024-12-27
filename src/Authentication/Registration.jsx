@@ -128,7 +128,7 @@ const Registration = () => {
             type="submit"
             disabled={loading}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? "Registering..." : "Register"}
           </button>
         </form>
         {/* if user dont have an account */}
