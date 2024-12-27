@@ -26,12 +26,15 @@ const CourseMenuSection = () => {
         </div>
         {/* cart */}
         <div onClick={navigateCart} className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6">
+          <div className="relative">
           <img
             className="w-5 cursor-pointer"
             src="/icons/cart.png"
             alt="cart"
           />
           <p>Cart</p>
+          {user && <CartCount />}
+          </div>
         </div>
         {/* notification */}
         <div className="w-full cursor-pointer flex items-center justify-center  border-slate-400 border-b py-3 gap-6">
