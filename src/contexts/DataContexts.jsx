@@ -101,6 +101,7 @@ export const DataProvider = ({ children }) => {
 
   // nav to Cart
   const navigateCart = () => {
+      setMenuSection(false);
       navigate("/cart")
   };
 
