@@ -57,6 +57,8 @@ const CourseInfo = () => {
     useEffect(() => {
       if(user){
         getPurchasedCourses()
+      }else{
+        console.log("User not logged in")
       }
     },[user])
 
