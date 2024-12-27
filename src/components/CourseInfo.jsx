@@ -19,6 +19,7 @@ const CourseInfo = () => {
       const getCSRFToken = () => {
         const cookies = document.cookie.split("; ");
         const csrfCookie = cookies.find(cookie => cookie.startsWith("csrftoken="));
+        console.log(csrfCookie)
         return csrfCookie ? csrfCookie.split("=")[1] : null;
       };
 
