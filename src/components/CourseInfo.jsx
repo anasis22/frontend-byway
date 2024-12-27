@@ -12,6 +12,10 @@ const CourseInfo = () => {
     { path: "/all-courses", label: "Courses" },
     { path: "/course-details", label: `${selectedCourse.title}` },
   ];
+
+  const cookies = document.cookie.split("; ");
+  const csrfCookie = cookies.find(cookie => cookie.startsWith("csrftoken="));
+  console.log(csrfCookie)
   
     // Course Buy
     const handleBuyNow = async (courseId) => {
