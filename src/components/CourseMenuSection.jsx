@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useData } from "../contexts/DataContexts";
 import { useAuth } from "../contexts/AuthContexts";
-import CartCount from "./CartCount";
+
 
 const CourseMenuSection = () => {
   const { menuSection, setMenuSection, navigateLoginPage, navigateCart , buyedCoursesCount } =
