@@ -5,7 +5,8 @@ import { useAuth } from "../contexts/AuthContexts";
 import axios from "axios";
 
 const CourseInfo = () => {
-  const { selectedCourse , navigate ,getPurchasedCourses, BACKEND_URL} = useData();
+  const { selectedCourse, navigate, getPurchasedCourses, BACKEND_URL } =
+    useData();
   const { user } = useAuth();
   const links = [
     { path: "/", label: "Home" },
@@ -13,55 +14,112 @@ const CourseInfo = () => {
     { path: "/course-details", label: `${selectedCourse.title}` },
   ];
 
- 
-    // Course Buy
-    const handleBuyNow = async (courseId) => {
+  // Course Buy
+  // const handleBuyNow = async (courseId) => {
 
-      const getCSRFToken = () => {
-        const cookies = document.cookie.split("; ");
-        const csrfCookie = cookies.find(cookie => cookie.startsWith("csrftoken="));
-        console.log(csrfCookie)
-        return csrfCookie ? csrfCookie.split("=")[1] : null;
-      };
+  //   const getCSRFToken = () => {
+  //     const cookies = document.cookie.split("; ");
+  //     const csrfCookie = cookies.find(cookie => cookie.startsWith("csrftoken="));
+  //     console.log(csrfCookie)
+  //     return csrfCookie ? csrfCookie.split("=")[1] : null;
+  //   };
 
-      if (!user) {
-        alert("You must log in to purchase a course!");
-        navigate("/login"); 
+  //   if (!user) {
+  //     alert("You must log in to purchase a course!");
+  //     navigate("/login");
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await axios.post(
+  //       `${BACKEND_URL}/api/buy-course/${courseId}/`,
+  //       {},
+  //       { withCredentials: true ,
+  //         headers: {
+  //           "X-CSRFToken": getCSRFToken(),
+  //         },
+  //       }
+  //     );
+
+  //     if (response.status === 200) {
+  //       alert("Course purchased successfully!");
+  //       getPurchasedCourses()
+  //     }
+
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 400) {
+  //       alert("You already own this course");
+  //     } else {
+  //       console.error("Error purchasing course:", error);
+  //       alert("An unexpected error occurred. Please try again later.");
+  //     }
+  //   }
+  // };
+
+  const fetchCSRFToken = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/api/get-csrf-token/`, {
+        withCredentials: true, // Ensures cookies are sent and received
+      });
+      const csrfToken = response.headers["set-cookie"]
+        ?.find((cookie) => cookie.startsWith("csrftoken="))
+        ?.split("=")[1]
+        ?.split(";")[0];
+
+      console.log("CSRF Token:", csrfToken);
+      return csrfToken;
+    } catch (error) {
+      console.error("Error fetching CSRF token:", error);
+      return null; // Return null if fetching the CSRF token fails
+    }
+  };
+
+  const handleBuyNow = async (courseId) => {
+    if (!user) {
+      alert("You must log in to purchase a course!");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      // Fetch the CSRF token
+      const csrfToken = await fetchCSRFToken();
+      if (!csrfToken) {
+        alert("Unable to fetch CSRF token. Please try again later.");
         return;
       }
-    
-      try {
-        const response = await axios.post(
-          `${BACKEND_URL}/api/buy-course/${courseId}/`,
-          {},
-          { withCredentials: true ,
-            headers: {
-              "X-CSRFToken": getCSRFToken(),
-            },
-          }
-        );
-    
-        if (response.status === 200) {
-          alert("Course purchased successfully!");
-          getPurchasedCourses()
-        }
-        
-      } catch (error) {
-        if (error.response && error.response.status === 400) {
-          alert("You already own this course");
-        } else {
-          console.error("Error purchasing course:", error);
-          alert("An unexpected error occurred. Please try again later.");
-        }
-      }
-    };
 
-    useEffect(() => {
-      if(user){
-        console.log(user.username)
-        getPurchasedCourses()
+      const response = await axios.post(
+        `${BACKEND_URL}/api/buy-course/${courseId}/`,
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "X-CSRFToken": csrfToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        alert("Course purchased successfully!");
+        getPurchasedCourses();
       }
-    },[user])
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        alert("You already own this course");
+      } else {
+        console.error("Error purchasing course:", error);
+        alert("An unexpected error occurred. Please try again later.");
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      console.log(user.username);
+      getPurchasedCourses();
+    }
+  }, [user]);
 
   return (
     <div
@@ -120,11 +178,7 @@ const CourseInfo = () => {
               >
                 {selectedCourse.rating_five_out_of}
               </p>
-              <img
-                className="w-5"
-                src="/icons/ss.png"
-                alt="star"
-              />
+              <img className="w-5" src="/icons/ss.png" alt="star" />
             </div>
             <p
               className="
@@ -203,7 +257,10 @@ const CourseInfo = () => {
             <button className="text-sm text-white bg-black py-2 px-2 rounded-md mt-4">
               Add to Cart
             </button>
-            <button onClick={() => handleBuyNow(selectedCourse.id)} className="text-sm text-black border border-black py-2 px-2 rounded-md mt-4">
+            <button
+              onClick={() => handleBuyNow(selectedCourse.id)}
+              className="text-sm text-black border border-black py-2 px-2 rounded-md mt-4"
+            >
               Buy Now
             </button>
           </section>
