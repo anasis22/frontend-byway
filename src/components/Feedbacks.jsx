@@ -51,7 +51,7 @@ const Feedbacks = () => {
       {/* Slider */}
       <div className="w-[90%] mx-auto">
         <Slider {...settings} className="p-2">
-        {instructorsLoading && <h1>Loading...</h1>}
+        {cfLoading && <h1>Loading...</h1>}
           {customerFeedbacks.map((el, i) => (
             <div
               key={i}
