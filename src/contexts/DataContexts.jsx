@@ -21,6 +21,10 @@ export const DataProvider = ({ children }) => {
   const [selectedCourse, setSelectedCourse] = useState([]);
   const [isCourseClicked, setIsCourseClicked] = useState(false);
   const [buyedCourses,setBuyedCourses] = useState([]);
+  const [categLoading, setCategLoading] = useState(false); 
+  const [courseLoading, setCoursesLoading] = useState(false); 
+  const [instructorsLoading, setInstructorsLoading] = useState(false); 
+  const [cfLoading, setCfLoading] = useState(false); 
   let buyedCoursesCount = buyedCourses.length
   const navigate = useNavigate();
 
@@ -46,39 +50,49 @@ export const DataProvider = ({ children }) => {
   // // get the categories from the backend
   const getCategories = async () => {
     try {
+      setCategLoading(true);
       const res = await axios.get(`${BACKEND_URL}/api/top-categories/`);
       setCategories(res.data);
       // console.log(res.data);
     } catch (err) {
       console.error(err);
+    }finally {
+      setCategLoading(false); 
     }
   };
 
   // // get the course details from the backend
   const getCourses = async () => {
     try {
+      setCoursesLoading(true);
       const res = await axios.get(`${BACKEND_URL}/api/top-courses/`);
       setCourses(res.data);
       // console.log(res.data);
     } catch (err) {
       console.error(err);
+    }finally {
+      setCoursesLoading(false); 
     }
   };
 
   // get the intstructors details from the backend
   const getInstructors = async () => {
     try {
+      setInstructorsLoading(true);
       const res = await axios.get(`${BACKEND_URL}/api/top-instructors/`);
       setInstructors(res.data);
       // console.log(res.data);
     } catch (err) {
       console.err(err);
+    }finally {
+      setInstructorsLoading(false); 
     }
   };
 
   // get the customer feedback details from the backend
   const getCustomerFeedbacks = async () => {
     try {
+      setCfLoading(true);
       const res = await axios.get(
         `${BACKEND_URL}/api/customer-feedbacks/`
       );
@@ -86,6 +100,8 @@ export const DataProvider = ({ children }) => {
       // console.log(res.data);
     } catch (err) {
       console.err(err);
+    } finally {
+      setCfLoading(false); 
     }
   };
 
@@ -177,7 +193,11 @@ export const DataProvider = ({ children }) => {
     buyedCourses,
     setBuyedCourses,
     buyedCoursesCount,
-    BACKEND_URL
+    BACKEND_URL,
+    categLoading,
+    courseLoading,
+    instructorsLoading,
+    cfLoading
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { useData } from "../contexts/DataContexts";
 
 const Categories = () => {
-  const { categories , navigate, BACKEND_URL} = useData();
+  const { categories , navigate, BACKEND_URL, categLoading} = useData();
   
   const displayedCategories = categories.slice(0,4)
 
@@ -16,6 +16,7 @@ const Categories = () => {
      w-[90%] mt-10
     "
     >
+      {categLoading && <h1>Loading...</h1>}
       <section
         className="
       w-full flex items-center justify-between 
