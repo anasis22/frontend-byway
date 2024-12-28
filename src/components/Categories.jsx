@@ -16,7 +16,6 @@ const Categories = () => {
      w-[90%] mt-10
     "
     >
-      {categLoading && <h1>Loading...</h1>}
       <section
         className="
       w-full flex items-center justify-between 
@@ -45,6 +44,7 @@ const Categories = () => {
       xs:justify-evenly
       md:justify-between
       ">
+        {categLoading && <h1>Loading...</h1>}
         {displayedCategories.map((el) => {
           return (
             <div key={el.id} className=" shadow-lg mt-6
