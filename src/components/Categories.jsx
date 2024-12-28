@@ -49,7 +49,7 @@ const Categories = () => {
           return (
             <div key={el.id} className=" shadow-lg mt-6
             flex flex-col gap-3 border border-[#E2E8F0] rounded-md items-center justify-center p-6 cursor-pointer
-            xs:w-[60%]
+            xs:w-[70%]
             sm:w-[30%]
             md:w-[20%]
             ">

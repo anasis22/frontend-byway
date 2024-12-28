@@ -53,7 +53,7 @@ const Courses = () => {
               key={el.id}
               className=" shadow-md mt-6
                 flex flex-col gap-2 border border-[#E2E8F0] rounded-md items-center justify-center p-3 cursor-pointer
-                xs:w-[60%]
+                xs:w-[70%]
                 sm:w-[43%]
                 md:w-[32%]
                 lg:w-[23%]
