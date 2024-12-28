@@ -2,13 +2,19 @@ import React from "react";
 import { useData } from "../contexts/DataContexts";
 
 const Instructors = () => {
-  const { instructors, showAllInstructors, navigate, BACKEND_URL } = useData();
+  const {
+    instructors,
+    showAllInstructors,
+    navigate,
+    BACKEND_URL,
+    instructorsLoading,
+  } = useData();
 
-  const displayedInstructors = instructors.slice(0,4)
+  const displayedInstructors = instructors.slice(0, 4);
 
   const handleSeeAll = () => {
-    navigate("/all-instructors")
-  }
+    navigate("/all-instructors");
+  };
   return (
     <div
       className="
@@ -47,6 +53,7 @@ const Instructors = () => {
        lg:justify-between
       "
       >
+        {instructorsLoading && <h1>Loading...</h1>}
         {displayedInstructors.map((el) => {
           return (
             <div
@@ -59,12 +66,11 @@ const Instructors = () => {
                 lg:w-[23%]
                 "
             >
-              <img
-                src={`${BACKEND_URL}${el.instructor_image}`}
-                alt="img"
-              />
+              <img src={`${BACKEND_URL}${el.instructor_image}`} alt="img" />
 
-              <h3 className="text-base font-medium text-txtBcolor">{el.name}</h3>
+              <h3 className="text-base font-medium text-txtBcolor">
+                {el.name}
+              </h3>
               <p
                 className="
                     text-xs font-extralight text-txtColor
@@ -72,17 +78,19 @@ const Instructors = () => {
               >
                 {el.course_name}
               </p>
-              <hr className="w-full"/>
+              <hr className="w-full" />
               <div className="flex items-center gap-12 justify-between">
                 <section className="flex items-center gap-2">
                   <img
-                  className="w-5"
+                    className="w-5"
                     src={`${BACKEND_URL}${el.rating_star}`}
                     alt="star"
                   />
                   <p className="text-xs font-medium">{el.rating_text}</p>
                 </section>
-                <p className="text-xxs font-extralight">{el.students_enrolled_count}</p>
+                <p className="text-xxs font-extralight">
+                  {el.students_enrolled_count}
+                </p>
               </div>
             </div>
           );

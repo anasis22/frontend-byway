@@ -3,7 +3,7 @@ import { useData } from "../contexts/DataContexts";
 import { useNavigate } from "react-router-dom";
 
 const Courses = () => {
-  const { courses, handleCourseClick, BACKEND_URL } = useData();
+  const { courses, handleCourseClick, BACKEND_URL,courseLoading } = useData();
   const displayedCourses = courses.slice(0,4)
   const navigate = useNavigate();
 
@@ -45,6 +45,7 @@ const Courses = () => {
        lg:justify-between
       "
       >
+        {courseLoading && <h1>Loading...</h1>}
         {displayedCourses.map((el) => {
           return (
             <div
