@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContexts";
 import axios from "axios";
 
 const CourseInfo = () => {
-  const { selectedCourse, navigate, getPurchasedCourses, BACKEND_URL } =
+  const { selectedCourse, navigate, getPurchasedCourses, BACKEND_URL , bnLoading , setBnLoading } =
     useData();
   const { user } = useAuth();
   const links = [
@@ -18,6 +18,7 @@ const CourseInfo = () => {
 
   const fetchCSRFToken = async () => {
     try {
+      setBnLoading(true);
       const response = await axios.get(`${BACKEND_URL}/api/get-csrf-token/`, {
         withCredentials: true, 
       });
@@ -67,6 +68,8 @@ const CourseInfo = () => {
         console.error("Error purchasing course:", error);
         alert("An unexpected error occurred. Please try again later.");
       }
+    }finally {
+      setBnLoading(false);
     }
   };
 
@@ -217,7 +220,7 @@ const CourseInfo = () => {
               onClick={() => handleBuyNow(selectedCourse.id)}
               className="text-sm text-black border border-black py-2 px-2 rounded-md mt-4"
             >
-              Buy Now
+              {bnLoading ? "Processing..." : "Buy Now"}
             </button>
           </section>
 

@@ -25,6 +25,7 @@ export const DataProvider = ({ children }) => {
   const [courseLoading, setCoursesLoading] = useState(false); 
   const [instructorsLoading, setInstructorsLoading] = useState(false); 
   const [cfLoading, setCfLoading] = useState(false); 
+  const [bnLoading, setBnLoading] = useState(false); 
   let buyedCoursesCount = buyedCourses.length
   const navigate = useNavigate();
 
@@ -197,7 +198,9 @@ export const DataProvider = ({ children }) => {
     categLoading,
     courseLoading,
     instructorsLoading,
-    cfLoading
+    cfLoading,
+    bnLoading,
+    setBnLoading
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
